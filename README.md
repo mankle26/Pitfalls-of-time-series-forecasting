@@ -1,25 +1,40 @@
 # Pitfalls of time series forecasting strategies
-*Hands off this online hands-on tutorial*
+*Critical review of a popular tutorial*
+
+<h2 style="text-align: center;">Abstract</h2>
+
+A popular online tutorial provides a seemingly easy and straight-forward
+strategy to forecast time series data. However, I believe, it is flawed.
+His models know future data and thus are able to perform really well, too well.
+Beyond this specific application, this points at some broader issues with 
+current machine learning and Data Science culture, which I outline at the end of
+this sheet. 
 
 ## Introduction
 Recently I found this promising article:
-"The Complete Guide to Time Series Forecasting Using Sklearn, Pandas, and Numpy"
+["The Complete Guide to Time Series Forecasting Using Sklearn, Pandas, and Numpy"](https://towardsdatascience.com/the-complete-guide-to-time-series-forecasting-using-sklearn-pandas-and-numpy-7694c90e45c1)
+The author apparently has thousands of followers and telling from the "claps",
+he recieved for this article, it appears fairly popular.
 
 <img src="title.png" width="800">
 
-The author takes a few steps and ends with a plot which shows a great accuracy in 
+After a few steps, the guide ends with a plot which shows a great accuracy in 
 predicting CO² concentration in the atmosphere using the DecisionTreeRegressor algorithm 
 from sklearn. 
 
+<img src="tutorial_pred.png" width="800">
+
 Wow! It nearly looks like it is exactly correct, just two steps behind 
 (spoiler: keep that in mind).
-If I could have such a great prediction for my stock data, I´ll be rich in no time, I thought.
-Said, done, I got daily data for the DowJones from here and adapted his code.
+
 
 ## Replication
-
-First, I got rid of all the introductory stuff, heading straight to boundless wealth. 
-After reading in my data and cropping it to increase speed, I can also display my data.
+If I could have such a great prediction for my stock data, I´ll be rich in no time, 
+I thought.
+Said, done, I got daily data for the DowJones from [here](https://www.measuringworth.com/) 
+and adapted his code.
+First, I got rid of all his introductory stuff, heading straight to boundless wealth. 
+After reading in my data and cropping it to increase speed, I can display my data, too.
 
 ```python
 import numpy as np
@@ -99,7 +114,8 @@ plt.tight_layout()
 ```
 <img src="pred26.png" width="800">
 
-... meh... this is disappointing. Well, Stock data may be something different... 
+... meh... this is disappointing. Ok, it got the direction correctly but his seemed 
+way better. Well, Stock data may be something different... 
 But let´s give it one more try with a different input and prediction window. 
 
 ```python
@@ -133,13 +149,15 @@ plt.tight_layout()
 ```
 <img src="pred100.png" width="800">
 
-Wow! Now this is something, I am just two days behind the performance of the DowJones!
-Finally, I´ll be as rich as Jakob Fugger (https://en.wikipedia.org/wiki/Jakob_Fugger)! 
-Wait, I´ll apply at Warren Buffett´s Berkshire Hathaway! 
-Wait, I should have entitled this work "How to make endless money in no time"! 
+Wow! Now this is something, I am just two days behind the performance of the DowJones!<br>
+Finally, I´ll be as rich as Jakob Fugger (https://en.wikipedia.org/wiki/Jakob_Fugger)! <br>
+Wait, I´ll apply at Warren Buffett´s Berkshire Hathaway! <br>
+Wait, I should have entitled this work "How to make endless money in no time"! <br>
 No, wait, I shouldn´t tell anyone!
 
-Ok. As you might have guessed by now, this is simply wrong. 
+## The Puzzle
+
+Ok... As you might have guessed by now, this is simply wrong. 
 No one can predict stock data that accurately.
 So, what is going on here? 
 
@@ -180,7 +198,7 @@ all_dfs.to_csv(f"{inp_len}_inp_{len(data)}rows.csv")
 We take a look at these files for two different input parameters:
 200 rows and 16 vs 18 predictive steps. For 16, prediction is way off
 for 18, it works with lag of two. 
-In Excel (yes, the thing nobody admits he uses it) the concatenated
+In Excel, the concatenated
 files for both iterations look like below. 
 To the left, the data for 16, to the right the data for 18 predicted steps.
 I coloured them based on the value in order
@@ -188,7 +206,7 @@ to make the shifting pattern visible.
 
 <img src="18_vs_16_inp_200rows_complete.png" width="800">
 
-Now how do we gat any insights regarding the question, whether the data knows
+Now how do we get any insights regarding the question, whether the data knows
 the future beforehand or not?
 In his code, he "reserves" the last two rows for testing. The following illustration
 is the same file, limited 
@@ -211,7 +229,7 @@ such accurate predictions.
 
 ## Open Questions
 
-***The 18- and 16-step models both propartially lagged result. 
+***The 18- and 16-step models both produce partially lagged result. 
 Why does the 16-step-plot still look so bad in the chart?***
 
 If we look at the above Excel-Snippet once again, we can see that it works perfectly
@@ -311,7 +329,7 @@ We can also see, that most of the time, n is less relevant than the input and pr
 horizon for the test data. Interesting is also that for all numbers of n except for
 the those with the greatest value (1700 and 1900) there is a peak at the inp parameters
 41 to 44. All lines reach a plateau between 47 and 64 and sharply drop afterwards. If one
-looks closer into the models at this part, it seems that the predition is repeating 
+looks closer into the models at this part, it seems that the prediction is repeating 
 most of the test input horizon, which, more or less accidentally produces high MAPE
 (if the Dow had had a flat graph during that time it would be a perfect strategy). 
 
@@ -343,7 +361,7 @@ Knowing your data is essential for meaningful insights. Often,
 probably some summary statistics. This is a good start, but during the project,
 data is manipulated, aggregated, interpolated, lagged, and so on. Although most
 of these tasks usually work as expected, it would not hurt to take a look at the 
-data, preferably at more than ten rows, whether everything is still correct. 
+data, preferably at more than ten rows, whether everything is still correct.
 
 Basically: Know your data. Not only at the beginning but throughout your 
 workflow. Not only the first 5 rows, but also what happens where in your data.
@@ -362,8 +380,8 @@ And even if the answer is favorable, being humble in your claims and
 keeping in mind that others might have reasonable critics and "comments"
 is always a good advice.
 
-In that sense:
-If I am completely mistaken and there is in fact nothing wrong with the analysis
+In that sense:<br>
+If I am completely mistaken here and there is in fact nothing wrong with the analysis
 I criticised in this sheet, please let me know, 
 I would love to understand the issue in more detail.
 
