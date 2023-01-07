@@ -1,4 +1,3 @@
-#https://github.com/marcopeix/datasciencewithmarco/blob/master/sklearn_time_series.ipynb
 
 import numpy as np
 import pandas as pd

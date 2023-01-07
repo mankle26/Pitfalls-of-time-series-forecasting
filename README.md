@@ -16,13 +16,13 @@ Recently I found this promising article:
 The author apparently has thousands of followers and telling from the "claps",
 he recieved for this article, it appears fairly popular.
 
-<img src="title.png" width="800">
+<img src="pics/title.png" width="800">
 
 After a few steps, the guide ends with a plot which shows a great accuracy in 
 predicting CO² concentration in the atmosphere using the DecisionTreeRegressor algorithm 
 from sklearn. 
 
-<img src="tutorial_pred.png" width="800">
+<img src="pics/tutorial_pred.png" width="800">
 
 Wow! It nearly looks like it is exactly correct, just two steps behind 
 (spoiler: keep that in mind).
@@ -57,7 +57,7 @@ ax.set_ylabel('Close of DJIA')
 fig.autofmt_xdate()
 plt.tight_layout()
 ```
-<img src="dow_jones_1000steps.png" width="800">
+<img src="pics/dow_jones_1000steps.png" width="800">
 
 Great, now I copied his functions, kept his prediction window and ran the model.
 ```python
@@ -112,7 +112,7 @@ plt.legend(loc=2)
 fig.autofmt_xdate()
 plt.tight_layout()
 ```
-<img src="pred26.png" width="800">
+<img src="pics/pred26.png" width="800">
 
 ... meh... this is disappointing. Ok, it got the direction correctly but his seemed 
 way better. Well, Stock data may be something different... 
@@ -147,7 +147,7 @@ plt.legend(loc=2)
 fig.autofmt_xdate()
 plt.tight_layout()
 ```
-<img src="pred100.png" width="800">
+<img src="pics/pred100.png" width="800">
 
 Wow! Now this is something, I am just two days behind the performance of the DowJones!<br>
 Finally, I´ll be as rich as Jakob Fugger (https://en.wikipedia.org/wiki/Jakob_Fugger)! <br>
@@ -204,7 +204,7 @@ To the left, the data for 16, to the right the data for 18 predicted steps.
 I coloured them based on the value in order
 to make the shifting pattern visible. 
 
-<img src="18_vs_16_inp_200rows_complete.png" width="800">
+<img src="pics/18_vs_16_inp_200rows_complete.png" width="800">
 
 Now how do we get any insights regarding the question, whether the data knows
 the future beforehand or not?
@@ -213,7 +213,7 @@ is the same file, limited
 to the last two rows of the X_train, the y_train, the X_test, the y_test and the y_pred
 (the latter three only have two rows). Now we can take a closer look.
 
-<img src="18_vs_16_inp_200rows_last2.png" width="800">
+<img src="pics/18_vs_16_inp_200rows_last2.png" width="800">
 
 At first glance there is no obvious relationship between these rows
 but if one looks closely, there is 
@@ -241,7 +241,7 @@ is not visible in the plot.
 Instead, the second row (or the last row) of the prediction is plotted, which is way off. 
 For the 18-steps-prediction this makes no difference because both rows are identical.
 
-<img src="pred18_16rows200.png" width="800">
+<img src="pics/pred18_16rows200.png" width="800">
 
 So which of these values make it in the plot and why?
 The Author even states before running the model, that 
@@ -318,7 +318,7 @@ df.to_csv("mapes.csv")
 plt.show()
 ```
 
-<img src="mapes.png" width="800">
+<img src="pics/mapes.png" width="800">
 
 This is ... interesting. We can see that it depends both on the size of the data set
 and the horizon we want the model to predict. For the example above, 
