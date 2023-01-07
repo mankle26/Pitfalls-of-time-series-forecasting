@@ -165,7 +165,7 @@ Well, in the comments section, some have expressed concerns that
 "The reason those models look good is that they've snooped on future data 
 and learned from it!". However, the author insists, that 
 "The model doesn't train on future values!". Although he later admits, that 
-he does not actually predict 26 steps at once, how his diagram suggests, but only one a 
+he does not actually predict 26 steps at once, like his diagram implies, but only one a 
 time (I believe that this is also not entirely correct, but let´s put that aside for the
 moment). Anyway, it still looks like a suspiciously great - simply a lagged - prediction.
 
@@ -196,7 +196,7 @@ all_dfs.to_csv(f"{inp_len}_inp_{len(data)}rows.csv")
 ```
 
 We take a look at these files for two different input parameters:
-200 rows and 16 vs 18 predictive steps. For 16, prediction is way off
+200 rows and 16 vs 18 predictive steps. For 16, prediction is way off,
 for 18, it works with lag of two. 
 In Excel, the concatenated
 files for both iterations look like below. 
