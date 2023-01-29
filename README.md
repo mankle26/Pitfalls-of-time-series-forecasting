@@ -8,7 +8,8 @@ strategy to forecast time series data. However, I believe, it is flawed.
 His models know future data and thus are able to perform really well, too well.
 Beyond this specific application, this points at some broader issues with 
 current machine learning and Data Science culture, which I outline at the end of
-this sheet. 
+this sheet. In [this](https://github.com/mankle26/Pitfalls-of-time-series-forecasting-II) 
+follow-up I describe one way to fix this tutorial.
 
 ## Introduction
 Recently I found this promising article:
@@ -368,7 +369,7 @@ workflow. Not only the first 5 rows, but also what happens where in your data.
 
 ### Be critical.
 
-Data Scientist, just like any scientist, try to describe phenomena,
+Data Scientists, just like any scientist, try to describe phenomena,
 detect relationships, make predictions. To put it more general and pathetic:
 Explaining the world around us. But this world is complex and our data usually
 covers only a tiny fraction of the environment we want to explain. 
